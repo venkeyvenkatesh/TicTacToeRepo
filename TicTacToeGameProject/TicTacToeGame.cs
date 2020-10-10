@@ -21,6 +21,11 @@ namespace TicTacToeGameProject
             Console.WriteLine("Computer mark is :" + computerLetter);
 
             showBoard();
+            while(true)
+            {
+                MakeAMove();
+            }
+
         }
 
 
@@ -47,33 +52,63 @@ namespace TicTacToeGameProject
 
                 if (playerLetter.Equals('X') || playerLetter.Equals('O'))
                 {
+                    if (playerLetter.Equals('X'))
+                    {
+                        computerLetter = 'O';
+                    }
+                    else
+                    {
+                        computerLetter = 'X';
+                    }
                     break;
                 }
             }
 
-            if (playerLetter.Equals('X'))
-            {
-                computerLetter = 'O';
-            }
-            else
-            {
-                computerLetter = 'X';
-            }
+
 
         }
 
         //UC3 Displaying the game board
         public void showBoard()
         {
-            for(int i=1;i<10;i++)
-            {
-                Console.Write(board[i] + "\t");
-                if(i==3||i==6)
-                {
-                    Console.Write("\n");
-                }
-            }
+
+
+            Console.WriteLine("\n " + board[1] + " | " + board[2] + " | " + board[3]);
+
+            Console.WriteLine("-----------");
+            Console.WriteLine("\n " + board[4] + " | " + board[5] + " | " + board[6]);
+
+            Console.WriteLine("------------");
+            Console.WriteLine("\n " + board[7] + " | " + board[8] + " | " + board[9]);
+
+
+
         }
 
+        //UC4 making a move
+        public void MakeAMove()
+        {
+            Console.WriteLine("Enter your position to mark");
+            int position = Convert.ToInt32(Console.ReadLine());
+            
+            while (!(checkAvailability(position)))
+            {
+                Console.WriteLine("The place is already filled ...fill another one");
+                Console.WriteLine("player 1 !! Enter your position to mark");
+                position = Convert.ToInt32(Console.ReadLine());
+            }
+            board[position] = playerLetter;
+            showBoard();
+        }
+
+        public bool checkAvailability(int position)
+        {
+            bool val = false;
+            if (board[position].Equals(' '))
+            {
+                val = true;
+            }
+            return val;
+        }
     }
 }
