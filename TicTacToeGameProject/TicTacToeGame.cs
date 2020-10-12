@@ -23,7 +23,7 @@ namespace TicTacToeGameProject
             showBoard(board);
             startingMove = whoStartsFirst();
             bool won = false;
-            while(!won)
+            while (!won)
             {
                 count++;
                 if (startingMove == playerLetter)
@@ -45,16 +45,18 @@ namespace TicTacToeGameProject
                     if (won == true)
                     {
                         Console.WriteLine("\nComputer won ");
+                        break;
                     }
                 }
                 else
                 {
-                    
+
                     makeComputerMove();
                     won = CheckWonOrNot(board, computerLetter);
                     if (won == true)
                     {
                         Console.WriteLine("\nComputer won ");
+                        break;
                     }
                     if (count == 5)
                     {
@@ -69,7 +71,7 @@ namespace TicTacToeGameProject
                         break;
                     }
                 }
-               
+
             }
 
         }
@@ -115,7 +117,7 @@ namespace TicTacToeGameProject
         }
 
         //UC3 Displaying the game board
-        public void showBoard(char []board)
+        public void showBoard(char[] board)
         {
 
 
@@ -144,7 +146,7 @@ namespace TicTacToeGameProject
             }
             else
             {
-                while (!(AvailabilityChecker(board,position)))
+                while (!(AvailabilityChecker(board, position)))
                 {
                     Console.WriteLine("The place is already filled ...fill another one");
                     Console.WriteLine("player 1 !! Enter your position to mark");
@@ -155,7 +157,7 @@ namespace TicTacToeGameProject
             }
         }
 
-        public bool AvailabilityChecker(char[] board,int position)
+        public bool AvailabilityChecker(char[] board, int position)
         {
             bool temp = false;
             if (board[position].Equals(' '))
@@ -166,22 +168,22 @@ namespace TicTacToeGameProject
         }
 
 
-       //UC6 who plays first
+        //UC6 who plays first
         public char whoStartsFirst()
         {
             Random random = new Random();
             int toss = random.Next(1, 3);
-            
+
             Console.WriteLine("Choose Heads(0) or Tails(1)");
             int choose = Convert.ToInt32(Console.ReadLine());
             while (!(choose == 1 || choose == 0))
             {
-             
+
                 Console.WriteLine("Choose Heads(0) or Tails(1)");
                 choose = Convert.ToInt32(Console.ReadLine());
             }
 
-            
+
             if (choose == toss)
             {
                 Console.WriteLine("Player starts first");
@@ -196,7 +198,7 @@ namespace TicTacToeGameProject
 
 
         //UC7 whether someone won or not
-        public bool CheckWonOrNot(char []board,char player)
+        public bool CheckWonOrNot(char[] board, char player)
         {
             bool won = false;
             if (board[1].Equals(player) && board[5].Equals(player) && board[9].Equals(player))
@@ -233,7 +235,7 @@ namespace TicTacToeGameProject
 
             int pos = GetWinningMove(board, computerLetter);
             int playerpos = GetWinningMove(board, playerLetter);
-           // Console.WriteLine("pos =" + pos);
+            // Console.WriteLine("pos =" + pos);
             if (pos == 0)
             {
                 if (playerpos != 0)
@@ -243,26 +245,35 @@ namespace TicTacToeGameProject
 
                 else
                 {
-                    Random rn = new Random();
-                    pos = rn.Next(1, 10);
-                    while (!(AvailabilityChecker(board, pos)))
+                    int k = getRandomCornerMoves(board);
+                    if (k != 0)
                     {
-                        pos = rn.Next(1, 10);
-
+                        board[k] = computerLetter;
                     }
-                    board[pos] = computerLetter;
+                    else
+                    {
+
+                        Random rn = new Random();
+                        pos = rn.Next(1, 10);
+                        while (!(AvailabilityChecker(board, pos)))
+                        {
+                            pos = rn.Next(1, 10);
+
+                        }
+                        board[pos] = computerLetter;
+                    }
                 }
             }
             else
             {
                 board[pos] = computerLetter;
-               
+
             }
             showBoard(board);
         }
         public int GetWinningMove(char[] board, char playLetter)
         {
-        
+
             bool won = false;
             int pos = 0;
             for (int i = 1; i < 10; i++)
@@ -293,6 +304,19 @@ namespace TicTacToeGameProject
             Array.Copy(board, 0, boardCopy, 0, board.Length);
 
             return boardCopy;
+        }
+
+        public int getRandomCornerMoves(char[] board)
+        {
+            int[] cornerList = { 1, 3, 7, 9 };
+            for (int i = 0; i < cornerList.Length; i++)
+            {
+                if (AvailabilityChecker(board, cornerList[i]))
+                {
+                    return cornerList[i];
+                }
+            }
+            return 0;
         }
 
     }
