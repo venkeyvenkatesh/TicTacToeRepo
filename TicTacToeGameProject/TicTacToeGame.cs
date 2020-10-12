@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace TicTacToeGameProject
 {
+
     class TicTacToeGame
     {
         //creating board char array
@@ -153,10 +154,16 @@ namespace TicTacToeGameProject
                     position = Convert.ToInt32(Console.ReadLine());
                 }
                 board[position] = playerLetter;
-                showBoard(board);
+               // showBoard(board);
             }
         }
 
+        /// <summary>
+        /// Checks whether the given psoition is available or not
+        /// </summary>
+        /// <param name="board"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public bool AvailabilityChecker(char[] board, int position)
         {
             bool temp = false;
@@ -278,6 +285,12 @@ namespace TicTacToeGameProject
             }
             showBoard(board);
         }
+        /// <summary>
+        /// Gets the winning move
+        /// </summary>
+        /// <param name="board"></param>
+        /// <param name="playLetter"></param>
+        /// <returns></returns>
         public int GetWinningMove(char[] board, char playLetter)
         {
 
@@ -304,7 +317,11 @@ namespace TicTacToeGameProject
             return pos;
         }
 
-
+        /// <summary>
+        /// Creates copy of game board
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
         public char[] BoardCopy(char[] board)
         {
             char[] boardCopy = new char[10];
@@ -313,6 +330,12 @@ namespace TicTacToeGameProject
             return boardCopy;
         }
 
+
+        /// <summary>
+        /// Gives the avaialable corner positions
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
         public int getRandomCornerMoves(char[] board)
         {
             int[] cornerList = { 1, 3, 7, 9 };
