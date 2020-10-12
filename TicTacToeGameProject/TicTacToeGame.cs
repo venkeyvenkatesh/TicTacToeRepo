@@ -250,17 +250,24 @@ namespace TicTacToeGameProject
                     {
                         board[k] = computerLetter;
                     }
-                    else
+                    else if (k == 0)
                     {
-
-                        Random rn = new Random();
-                        pos = rn.Next(1, 10);
-                        while (!(AvailabilityChecker(board, pos)))
+                        if (AvailabilityChecker(board, 5))
                         {
-                            pos = rn.Next(1, 10);
-
+                            board[5] = computerLetter;
                         }
-                        board[pos] = computerLetter;
+                        else
+                        {
+
+                            Random rn = new Random();
+                            pos = rn.Next(1, 10);
+                            while (!(AvailabilityChecker(board, pos)))
+                            {
+                                pos = rn.Next(1, 10);
+
+                            }
+                            board[pos] = computerLetter;
+                        }
                     }
                 }
             }
