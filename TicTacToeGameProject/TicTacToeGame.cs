@@ -23,6 +23,10 @@ namespace TicTacToeGameProject
             showBoard();
             startingMove = whoStartsFirst();
 
+            while(!CheckWonOrNot(startingMove))
+            {
+                MakeAMove();
+            }
 
         }
 
@@ -118,6 +122,7 @@ namespace TicTacToeGameProject
         }
 
 
+       //UC6 who plays first
         public char whoStartsFirst()
         {
             Random random = new Random();
@@ -143,6 +148,39 @@ namespace TicTacToeGameProject
                 Console.WriteLine("Computer starts first");
                 return computerLetter;
             }
+        }
+
+
+        //UC7 whether someone won or not
+        public bool CheckWonOrNot(char player)
+        {
+            bool won = false;
+            if (board[1].Equals(player) && board[5].Equals(player) && board[9].Equals(player))
+            {
+                won = true;
+            }
+            if (board[3].Equals(player) && board[5].Equals(player) && board[7].Equals(player))
+            {
+                won = true;
+            }
+            for (int i = 1; i < 10;)
+            {
+                if (board[i].Equals(player) && board[i + 1].Equals(player) && board[i + 2].Equals(player))
+                {
+                    won = true;
+                }
+                i = i + 3;
+            }
+            for (int i = 1; i < 4; i++)
+
+            {
+                if (board[i].Equals(player) && board[i + 3].Equals(player) && board[i + 6].Equals(player))
+                {
+                    won = true;
+                }
+
+            }
+            return won;
         }
 
 
