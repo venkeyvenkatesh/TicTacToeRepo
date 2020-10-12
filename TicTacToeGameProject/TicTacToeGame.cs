@@ -19,13 +19,31 @@ namespace TicTacToeGameProject
             ChooseLetter();
             Console.WriteLine("Your mark is :" + playerLetter);
             Console.WriteLine("Computer mark is :" + computerLetter);
-
-            showBoard();
+            int count = 0;
+            showBoard(board);
             startingMove = whoStartsFirst();
-
-            while(!CheckWonOrNot(startingMove))
+            bool won = false;
+            while(!won)
             {
                 MakeAMove();
+                won = CheckWonOrNot(board, playerLetter);
+                if(won==true)
+                {
+                    Console.WriteLine("player have won");
+                    break;
+                }
+                if(count==5)
+                {
+                    Console.WriteLine("OOps tie");
+                    break;
+                }
+                makeComputerMove();
+                won = CheckWonOrNot(board, computerLetter);
+                if(won==true)
+                {
+                    Console.WriteLine("Computer won ");
+                }
+               
             }
 
         }
@@ -71,7 +89,7 @@ namespace TicTacToeGameProject
         }
 
         //UC3 Displaying the game board
-        public void showBoard()
+        public void showBoard(char []board)
         {
 
 
@@ -100,18 +118,18 @@ namespace TicTacToeGameProject
             }
             else
             {
-                while (!(AvailabilityChecker(position)))
+                while (!(AvailabilityChecker(board,position)))
                 {
                     Console.WriteLine("The place is already filled ...fill another one");
                     Console.WriteLine("player 1 !! Enter your position to mark");
                     position = Convert.ToInt32(Console.ReadLine());
                 }
                 board[position] = playerLetter;
-                showBoard();
+                showBoard(board);
             }
         }
 
-        public bool AvailabilityChecker(int position)
+        public bool AvailabilityChecker(char[] board,int position)
         {
             bool temp = false;
             if (board[position].Equals(' '))
@@ -152,7 +170,7 @@ namespace TicTacToeGameProject
 
 
         //UC7 whether someone won or not
-        public bool CheckWonOrNot(char player)
+        public bool CheckWonOrNot(char []board,char player)
         {
             bool won = false;
             if (board[1].Equals(player) && board[5].Equals(player) && board[9].Equals(player))
@@ -183,6 +201,64 @@ namespace TicTacToeGameProject
             return won;
         }
 
+        //UC8 makeComputer move
+        public void makeComputerMove()
+        {
+
+            int pos = GetWinningMove(board, computerLetter);
+           // Console.WriteLine("pos =" + pos);
+            if (pos == 0)
+            {
+                Random rn = new Random();
+                pos = rn.Next(1, 10);
+                while(!(AvailabilityChecker(board, pos)))
+                {
+                    pos = rn.Next(1, 10);
+                    
+                }
+                board[pos] = computerLetter;
+            }
+            else
+            {
+                board[pos] = computerLetter;
+               
+            }
+            showBoard(board);
+        }
+        public int GetWinningMove(char[] board, char playLetter)
+        {
+        
+            bool won = false;
+            int pos = 0;
+            for (int i = 1; i < 10; i++)
+            {
+                char[] board2 = BoardCopy(board);
+                if (AvailabilityChecker(board2, i))
+                {
+                    board2[i] = playLetter;
+                    won = CheckWonOrNot(board2, playLetter);
+                    if (won == true)
+                    {
+                        pos = i;
+                        break;
+                    }
+                    else
+                    {
+                        pos = 0;
+                    }
+                }
+            }
+            return pos;
+        }
+
+
+        public char[] BoardCopy(char[] board)
+        {
+            char[] boardCopy = new char[10];
+            Array.Copy(board, 0, boardCopy, 0, board.Length);
+
+            return boardCopy;
+        }
 
     }
 }
