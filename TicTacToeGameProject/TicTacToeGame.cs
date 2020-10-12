@@ -25,23 +25,49 @@ namespace TicTacToeGameProject
             bool won = false;
             while(!won)
             {
-                MakeAMove();
-                won = CheckWonOrNot(board, playerLetter);
-                if(won==true)
+                count++;
+                if (startingMove == playerLetter)
                 {
-                    Console.WriteLine("player have won");
-                    break;
+                    MakeAMove();
+                    won = CheckWonOrNot(board, playerLetter);
+                    if (won == true)
+                    {
+                        Console.WriteLine("\nplayer have won");
+                        break;
+                    }
+                    if (count == 5)
+                    {
+                        Console.WriteLine("\nOOps tie");
+                        break;
+                    }
+                    makeComputerMove();
+                    won = CheckWonOrNot(board, computerLetter);
+                    if (won == true)
+                    {
+                        Console.WriteLine("\nComputer won ");
+                    }
                 }
-                if(count==5)
+                else
                 {
-                    Console.WriteLine("OOps tie");
-                    break;
-                }
-                makeComputerMove();
-                won = CheckWonOrNot(board, computerLetter);
-                if(won==true)
-                {
-                    Console.WriteLine("Computer won ");
+                    
+                    makeComputerMove();
+                    won = CheckWonOrNot(board, computerLetter);
+                    if (won == true)
+                    {
+                        Console.WriteLine("\nComputer won ");
+                    }
+                    if (count == 5)
+                    {
+                        Console.WriteLine("\nOOps tie");
+                        break;
+                    }
+                    MakeAMove();
+                    won = CheckWonOrNot(board, playerLetter);
+                    if (won == true)
+                    {
+                        Console.WriteLine("\nplayer have won");
+                        break;
+                    }
                 }
                
             }
@@ -206,17 +232,26 @@ namespace TicTacToeGameProject
         {
 
             int pos = GetWinningMove(board, computerLetter);
+            int playerpos = GetWinningMove(board, playerLetter);
            // Console.WriteLine("pos =" + pos);
             if (pos == 0)
             {
-                Random rn = new Random();
-                pos = rn.Next(1, 10);
-                while(!(AvailabilityChecker(board, pos)))
+                if (playerpos != 0)
                 {
-                    pos = rn.Next(1, 10);
-                    
+                    board[playerpos] = computerLetter;
                 }
-                board[pos] = computerLetter;
+
+                else
+                {
+                    Random rn = new Random();
+                    pos = rn.Next(1, 10);
+                    while (!(AvailabilityChecker(board, pos)))
+                    {
+                        pos = rn.Next(1, 10);
+
+                    }
+                    board[pos] = computerLetter;
+                }
             }
             else
             {
