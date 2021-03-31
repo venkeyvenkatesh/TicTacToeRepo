@@ -38,7 +38,7 @@ namespace TicTacToeGameProject
                     }
                     if (count == 5)
                     {
-                        Console.WriteLine("\nOOps tie");
+                        Console.WriteLine("\noops tie");
                         break;
                     }
                     makeComputerMove();

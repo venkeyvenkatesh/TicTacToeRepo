@@ -1,31 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\source\\repos\\TicTacToeGameProject\\TicTacToeGameProject\\TicTacToeGameProject.csproj": {}
+    "C:\\Users\\BANVENKA\\Source\\Repos\\TicTacToeRepo\\TicTacToeGameProject\\TicTacToeGameProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\source\\repos\\TicTacToeGameProject\\TicTacToeGameProject\\TicTacToeGameProject.csproj": {
+    "C:\\Users\\BANVENKA\\Source\\Repos\\TicTacToeRepo\\TicTacToeGameProject\\TicTacToeGameProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\TicTacToeGameProject\\TicTacToeGameProject\\TicTacToeGameProject.csproj",
+        "projectUniqueName": "C:\\Users\\BANVENKA\\Source\\Repos\\TicTacToeRepo\\TicTacToeGameProject\\TicTacToeGameProject.csproj",
         "projectName": "TicTacToeGameProject",
-        "projectPath": "C:\\Users\\Administrator\\source\\repos\\TicTacToeGameProject\\TicTacToeGameProject\\TicTacToeGameProject.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\source\\repos\\TicTacToeGameProject\\TicTacToeGameProject\\obj\\",
+        "projectPath": "C:\\Users\\BANVENKA\\Source\\Repos\\TicTacToeRepo\\TicTacToeGameProject\\TicTacToeGameProject.csproj",
+        "packagesPath": "C:\\Users\\BANVENKA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BANVENKA\\Source\\Repos\\TicTacToeRepo\\TicTacToeGameProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BANVENKA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +37,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -52,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
